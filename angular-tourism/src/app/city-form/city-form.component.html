@@ -1,0 +1,36 @@
+<h1 *ngIf="!this.editMode">Add new City</h1>
+<h1 *ngIf="this.editMode">Edit City</h1>
+<a href="/syscat/cities" class="button" style="display: inline-block !important; width: auto !important;">Cities List</a>
+<br />
+<br />
+<ul class="lang_list">
+	<li *ngFor="let rec of languages;">
+		<a href="javascript:void(0);" data-lang="{{ rec.code }}" class="switchLang">{{ rec.name }}</a>
+	</li>
+</ul>
+<div>
+	<br />
+	<div class="form-group">
+		<label>Country</label>
+		<select name="country_id" [(ngModel)]="city.country_id" class="form-control">
+			<option value="">Select Country</option>
+			<option *ngFor="let country of list_countries; index as i;" value="{{ country.id }}">{{ country.name_en }}</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<label>City</label>
+		<input type="text" [(ngModel)]="city.name_en" class="langInput lang_en">
+		<input type="text" [(ngModel)]="city.name_ru" class="langInput lang_ru">
+		<input type="text" [(ngModel)]="city.name_kz" class="langInput lang_kz">
+		<input type="text" [(ngModel)]="city.name_es" class="langInput lang_es">
+		<input type="text" [(ngModel)]="city.name_zh" class="langInput lang_zh">
+	</div>
+	<div class="form-group">
+		<label>Status</label>
+		<select name="is_active" [(ngModel)]="city.is_active" class="form-control">
+			<option value="true">Active</option>
+			<option value="false">Not Active</option>
+		</select>
+	</div>
+	<button (click)="saveCity()" class="button">Submit</button>
+</div>

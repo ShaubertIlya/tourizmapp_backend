@@ -1,0 +1,29 @@
+	<div class="container-fluid">
+		<div class="menu">
+			<ul>
+				<li><a href="/" title="Managers">Managers</a></li>
+				<li><a href="/users" title="Users">Users</a></li>
+				<li><a href="/sights" title="Views">Views</a></li>
+				<li><a href="/vr" title="VR Catalog">VR Catalog</a></li>
+				<li><a href="/ar" title="AR Catalog">AR Catalog</a></li>
+				<li><a href="/articles" title="Articles Catalog">Articles Catalog</a></li>
+				<li><a href="/discounts" title="Discounts Catalog">Discounts Catalog</a></li>
+				<li><a href="/syscat" title="System Catalog">System Catalog</a></li>
+			</ul>
+			<div class="buttons">
+				<a href="/manager_form" class="button addManager" style="display: none;">Add Manager</a>
+				<a href="/user_form" class="button addUser" style="display: none;">Add User</a>
+				<a href="/article_form" class="button addArticle" style="display: none;">Add Article</a>
+				<a href="/discount_form" class="button addDiscount" style="display: none;">Add Discount</a>
+				<a href="/syscat/tags_form" class="button addTag" style="display: none;">Add Tag</a>
+				<a href="/syscat/country_form" class="button addCountry" style="display: none;">Add Country</a>
+				<a href="/syscat/city_form" class="button addCity" style="display: none;">Add City</a>
+				<a href="/syscat/company_form" class="button addCompany" style="display: none;">Add Company</a>
+				<a href="/sight_form" class="button addView" style="display: none;">Add View</a>
+				<a href="/ar_form" class="button addAr" style="display: none;">Add AR Content</a>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid">
+		<div class="content">
+			<router-outlet></router-outlet>

@@ -1,0 +1,38 @@
+			<div class="search">
+				<div class="form-row align-items-center"> 
+					<input type="text" placeholder="Search by Name" [(ngModel)]="query" class="form-control">
+					<button type="button" (click)="searchCity()">Search</button>
+				</div>
+				<div class="form-row align-items-center">
+					<select (change)="filterByCountry($event.target.value)" class="form-control">
+						<option value="">Filter By Country</option>
+						<option *ngFor="let country of list_countries; index as i;" value="{{ country.id }}">{{ country.name_en }}</option>
+					</select>					
+				</div>
+			</div>
+			<div class="bordered full">
+				<table>
+				<thead>
+					<tr>
+						<td>ID</td> 
+						<td>Name</td>
+						<td>Status</td>
+						<td>Actions</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let record of list; index as i;">
+						<td>{{ i + 1 }}</td>
+						<td>{{ record.name_en }}</td>
+						<td>
+							<span *ngIf="record.is_active" class="badge badge-success">Active</span>
+							<span *ngIf="!record.is_active" class="badge badge-warning">Not Active</span>
+						</td>
+						<td>
+							<a href="/syscat/city_form/{{ record.id }}" class="badge badge-warning">Edit</a>
+							<a href="javascript:void(0);" (click)="askDelete(record.id)" class="onDelete badge badge-danger">Remove</a>
+						</td>
+					</tr>
+				</tbody>
+				</table>
+			</div>

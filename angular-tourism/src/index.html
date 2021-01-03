@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>AngularTourism</title>
+	<base href="/">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/x-icon" href="favicon.ico">
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="fade"></div>
+	<div id="confirmWindow" class="popup_window" style="display: none;">
+		<a href="javascript:void(0);" class="closePopup"></a>
+		<h1>Delete</h1>
+		<p class="confirm"></p>
+		<div class="btns">
+			<a href="javascript:void(0);" class="confirm">Yes</a>
+			<a href="javascript:void(0);" class="decline">No</a>
+		</div>
+	</div>
+	<div id="viewWindow" class="popup_window" style="display: none;">
+		<a href="javascript:void(0);" class="closePopup"></a>
+		<h1>Edit View</h1>
+		<p class="confirm">What do you want to edit?</p>
+		<div class="btns full">
+			<a href="javascript:void(0);" class="editAbout">About</a>
+			<a href="javascript:void(0);" class="">VR Content</a>
+			<a href="javascript:void(0);" class="">AR Content</a>
+			<a href="javascript:void(0);" class="">Articles</a>
+			<a href="javascript:void(0);" class="">Comments and Rating</a>
+		</div>
+	</div>
+	<app-root></app-root>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+	<script>
+
+	$(document).ready(function() {
+	
+		$('.select2').select2();
+	
+		if ($('.country_select').length) {
+			$('.country_select').change();
+		}
+		
+		$(document).off('click', '.switchLang').on('click', '.switchLang', function() {
+		
+			var this_lang = $(this).attr('lang');
+			$('.langInput').hide();
+			$('.langInput.lang_' + this_lang).show();
+			
+			$('.switchLang').removeClass('active');
+			$(this).addClass('active');
+			
+		});
+		if ($('.switchLang').length) {
+			$('.switchLang').first().click();			
+		}
+	
+		/* Close the popup */
+		$(document).on('click', 'div.fade', function() {
+		
+			$('.popup_window').fadeOut('fast');
+			$('div.fade').fadeOut('slow');
+			$('.activePopup').removeClass('activePopup');
+			deleteConfirmed = false;
+			
+		});
+		$(document).on('click', '.closePopup', function() {
+			$('div.fade').click();
+		});
+		
+		$('.popup_window').each(function() {
+		
+			var this_height = $(this).height() / 2 + 100;
+			$(this).css('margin-top', '-' + this_height + 'px');
+		
+		});
+			
+	});
+	</script>
+</body>
+</html>

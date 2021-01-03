@@ -1,0 +1,62 @@
+<h1 *ngIf="!this.editMode">Add new Article</h1>
+<h1 *ngIf="this.editMode">Edit Article</h1>
+<ul class="lang_list">
+	<li *ngFor="let rec of languages;">
+		<a href="javascript:void(0);" data-lang="{{ rec.code }}" class="switchLang">{{ rec.name }}</a>
+	</li>
+</ul>
+<div>
+	<br />
+	<div class="form-group">
+		<label>Main Header</label>
+		<input type="text" [(ngModel)]="article.main_header_en" class="langInput lang_en">
+		<input type="text" [(ngModel)]="article.main_header_ru" class="langInput lang_ru">
+		<input type="text" [(ngModel)]="article.main_header_kz" class="langInput lang_kz">
+		<input type="text" [(ngModel)]="article.main_header_es" class="langInput lang_es">
+		<input type="text" [(ngModel)]="article.main_header_zh" class="langInput lang_zh">
+	</div>
+	<div class="form-group">
+		<label>Short Description</label>
+		<textarea [(ngModel)]="article.sdescription_en" class="langInput lang_en"></textarea>
+		<textarea [(ngModel)]="article.sdescription_ru" class="langInput lang_ru"></textarea>
+		<textarea [(ngModel)]="article.sdescription_kz" class="langInput lang_kz"></textarea>
+		<textarea [(ngModel)]="article.sdescription_es" class="langInput lang_es"></textarea>
+		<textarea [(ngModel)]="article.sdescription_zh" class="langInput lang_zh"></textarea>
+	</div>
+	<div class="form-group">
+		<label>Full Description</label>
+		<textarea [(ngModel)]="article.description_en" class="langInput lang_en"></textarea>
+		<textarea [(ngModel)]="article.description_ru" class="langInput lang_ru"></textarea>
+		<textarea [(ngModel)]="article.description_kz" class="langInput lang_kz"></textarea>
+		<textarea [(ngModel)]="article.description_es" class="langInput lang_es"></textarea>
+		<textarea [(ngModel)]="article.description_zh" class="langInput lang_zh"></textarea>
+	</div>
+	<div class="form-group">
+		<label>Country</label>
+		<select [(ngModel)]="article.country_id" (change)="onChangeCountry($event.target.value)" class="country_select form-control">
+			<option value="">Select Country</option>
+			<option *ngFor="let country of list_countries; index as i;" value="{{ country.id }}">{{ country.name_en }}</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<label>City</label>
+		<select [(ngModel)]="article.city_id" class="form-control">
+			<option value="">Select City</option>
+			<option *ngFor="let city of list_cities; index as i;" value="{{ city.id }}">{{ city.name_en }}</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<label>Tags</label>
+		<select [(ngModel)]="article.tags" multiple size="10" class="form-control">
+			<option *ngFor="let tag of list_tags; index as i;" value="{{ tag.id }}">{{ tag.name_en }}</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<label>Status</label>
+		<select [(ngModel)]="article.is_active" class="form-control">
+			<option value="true">Active</option>
+			<option value="false">Not Active</option>
+		</select>
+	</div>
+	<button (click)="saveArticle()" class="button">Submit</button>
+</div>

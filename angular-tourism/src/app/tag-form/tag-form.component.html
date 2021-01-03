@@ -1,0 +1,29 @@
+<h1 *ngIf="!this.editMode">Add new Tag</h1>
+<h1 *ngIf="this.editMode">Edit Tag</h1>
+<a href="/syscat/tags" class="button" style="display: inline-block !important; width: auto !important;">Tags List</a>
+<br />
+<br />
+<ul class="lang_list">
+	<li *ngFor="let rec of languages;">
+		<a href="javascript:void(0);" data-lang="{{ rec.code }}" class="switchLang">{{ rec.name }}</a>
+	</li>
+</ul>
+<div>
+	<br />
+	<div class="form-group">
+		<label>Tag Name</label>
+		<input type="text" [(ngModel)]="tag.name_en" class="langInput lang_en">
+		<input type="text" [(ngModel)]="tag.name_ru" class="langInput lang_ru">
+		<input type="text" [(ngModel)]="tag.name_kz" class="langInput lang_kz">
+		<input type="text" [(ngModel)]="tag.name_es" class="langInput lang_es">
+		<input type="text" [(ngModel)]="tag.name_zh" class="langInput lang_zh">
+	</div>
+	<div class="form-group">
+		<label>Status</label>
+		<select name="is_active" [(ngModel)]="tag.is_active" class="form-control">
+			<option value="true">Active</option>
+			<option value="false">Not Active</option>
+		</select>
+	</div>
+	<button (click)="saveTag()" class="button">Submit</button>
+</div>

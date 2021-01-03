@@ -1,0 +1,6 @@
+<h1>System Catalog</h1>
+<ul class="lang_list">
+	<li *ngFor="let rec of pages">
+		<a routerLink="{{ rec.url }}">{{ rec.name }}</a>
+	</li>
+</ul>

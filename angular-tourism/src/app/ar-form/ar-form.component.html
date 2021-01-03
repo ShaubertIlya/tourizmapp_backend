@@ -1,0 +1,47 @@
+<h1 *ngIf="!this.editMode">Add new AR content</h1>
+<h1 *ngIf="this.editMode">Edit AR Content</h1>
+<ul class="lang_list">
+	<li *ngFor="let rec of languages;">
+		<a href="javascript:void(0);" data-lang="{{ rec.code }}" class="switchLang">{{ rec.name }}</a>
+	</li>
+</ul>
+<div>
+	<br />
+	<div class="form-group">
+		<label>Main Header</label>
+		<input type="text" [(ngModel)]="ar.main_header_en" class="langInput lang_en">
+		<input type="text" [(ngModel)]="ar.main_header_ru" class="langInput lang_ru">
+		<input type="text" [(ngModel)]="ar.main_header_kz" class="langInput lang_kz">
+		<input type="text" [(ngModel)]="ar.main_header_es" class="langInput lang_es">
+		<input type="text" [(ngModel)]="ar.main_header_zh" class="langInput lang_zh">
+	</div>
+	<div class="form-group">
+		<label>Parent View</label><br />
+		<select [(ngModel)]="ar.sight_id" class="sight_select select2 form-control">
+			<option value="">Select Parent View</option>
+			<option *ngFor="let sight of list_sights; index as i;" value="{{ sight.id }}">{{ sight.name_en }}</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<label>Status</label>
+		<select [(ngModel)]="ar.is_active" class="form-control">
+			<option value="true">Active</option>
+			<option value="false">Not Active</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<label>Archive</label>
+		<input ng2FileSelect [uploader]="uploader" (change)="uploader.uploadAll()" type="file" name="file" class="form-control">
+		<div *ngIf="!this.editMode">
+			<div class="alert alert-msg" *ngIf="this.uploaded">
+				<p>File: <a href="{{ ar.file_url }}" target="_blank">{{ ar.file_url }}</a></p>
+			</div>
+		</div>
+		<div *ngIf="this.editMode">
+			<div class="alert alert-msg" *ngIf="ar.file_url">
+				<p>File: <a href="{{ ar.file_url }}" target="_blank">{{ ar.file_url }}</a></p>
+			</div>		
+		</div>
+	</div>
+	<button (click)="saveAr()" class="button">Submit</button>
+</div>
