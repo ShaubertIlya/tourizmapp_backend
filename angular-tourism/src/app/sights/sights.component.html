@@ -1,0 +1,84 @@
+			
+				<div class="row">
+				<div class="col" > 
+					<input  style="margin-bottom: 20px;" type="text" placeholder="Search by Title" [(ngModel)]="query" class="form-control">
+					
+				</div>
+				<div class="col">
+					<button type="button" style="padding: 7px !important;" (click)="searchSight()">Search</button>
+				
+			</div>
+				<div class="col">
+					<select (change)="onChangeCountry($event.target.value)" class="form-control">
+						<option value="">Filter By Country</option>
+						<option *ngFor="let country of list_countries; index as i;" value="{{ country.id }}">{{ country.name_en }}</option>
+					</select>					
+				</div>
+				<div class="col">
+					<select (change)="onChangeCity($event.target.value)" class="form-control">
+						<option value="">Filter By City</option>
+						<option *ngFor="let city of list_cities; index as i;" value="{{ city.id }}">{{ city.name_en }}</option>
+					</select>					
+				</div>
+				<div class="col" > 
+					<button type="button" style="padding: 7px !important;"  (click)="sight_xl()">Export Items</button>
+	</div>
+				<div class="col" > 
+					<button type="button" style="padding: 7px !important;" routerLink="/sight_form">Add Item</button>
+				</div>
+	</div>
+		
+			<div style="overflow: auto;">
+				<table class="table table-striped">
+				<thead>
+					<tr>
+						<td>ID</td> 
+						<td>Название</td>
+						<td>Страна</td>
+						<td>Город</td>
+						<td>Статус</td>
+						<td>Рейтинг</td>
+						<td>Просмотры</td>
+						<td>Коментарии</td>
+						<td>кол-во оценок</td>
+						<td>Дата создания</td>
+
+						<td>Опции</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let record of list; index as i;">
+						<td>{{ i + 1 }}</td>
+						<td>{{ record.name_en }}</td>
+						<td>{{ record.country_id }}</td>
+						<td>{{ record.city_id }}</td>
+						<td>
+							<span *ngIf="record.is_active" class="badge badge-success">Active</span>
+							<span *ngIf="!record.is_active" class="badge badge-warning">Not Active</span>
+						</td>
+					
+						<td>{{ record.rating }}</td>
+						<td>{{ record.views_count }}</td>
+						<td>{{ record.ratecount }}</td>
+						<td>{{ record.ratecount }}</td>
+						<td>{{ record.create_date | date: 'dd-MM-yyyy H:mm:ss' }}</td>
+
+						<td>
+							<a routerLink="/sight_form/{{ record.id }}" class="badge badge-warning">Edit</a>
+							<a href="javascript:void(0);" (click)="askDeleteSight(record.id)" class="onDelete badge badge-danger">Remove</a>
+						</td>
+					</tr>
+				</tbody>
+				</table>
+				<!-- <div class="d-flex justify-content-between p-2">
+					<ngb-pagination
+					  [collectionSize]="total" [(page)]="page" [pageSize]="pageSize">
+					</ngb-pagination>
+				
+					<select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="pageSize">
+					  <option [ngValue]="2">2 items per page</option>
+					  <option [ngValue]="4">4 items per page</option>
+					  <option [ngValue]="6">6 items per page</option>
+					</select>
+				  </div> -->
+			</div>

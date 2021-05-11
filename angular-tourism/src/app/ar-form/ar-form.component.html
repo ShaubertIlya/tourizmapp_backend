@@ -1,0 +1,128 @@
+<h1 *ngIf="!this.editMode">Add new AR content</h1>
+<h1 *ngIf="this.editMode">Edit AR Content</h1>
+
+<div>
+	<br />
+	<div class="form-group">
+		<label>Main Header en</label>
+		<input type="text" [(ngModel)]="ar.main_header_en">
+		<label>Main Header ru</label>
+		<input type="text" [(ngModel)]="ar.main_header_ru">
+		<label>Main Header kz</label>
+		<input type="text" [(ngModel)]="ar.main_header_kz">
+		<label>Main Header es</label>
+		<input type="text" [(ngModel)]="ar.main_header_es">
+		<label>Main Header deu</label>
+		<input type="text" [(ngModel)]="ar.main_header_zh">
+	</div>
+	<div class="form-group">
+		<label>Short Description en</label>
+		<textarea [(ngModel)]="ar.sdescription_en" class="langInput lang_en"></textarea>
+		<label>Short Description ru</label>
+		<textarea [(ngModel)]="ar.sdescription_ru" class="langInput lang_ru"></textarea>
+		<label>Short Description kz</label>
+		<textarea [(ngModel)]="ar.sdescription_kz" class="langInput lang_kz"></textarea>
+		<label>Short Description es</label>
+		<textarea [(ngModel)]="ar.sdescription_es" class="langInput lang_es"></textarea>
+		<label>Short Description deu</label>
+		<textarea [(ngModel)]="ar.sdescription_zh" class="langInput lang_zh"></textarea>
+	</div>
+	<div class="form-group">
+		<label>Full Description en</label>
+		<textarea [(ngModel)]="ar.description_en" class="langInput lang_en"></textarea>
+		<label>Full Description ru</label>
+		<textarea [(ngModel)]="ar.description_ru" class="langInput lang_ru"></textarea>
+		<label>Full Description kz</label>
+		<textarea [(ngModel)]="ar.description_kz" class="langInput lang_kz"></textarea>
+		<label>Full Description es</label>
+		<textarea [(ngModel)]="ar.description_es" class="langInput lang_es"></textarea>
+		<label>Full Description deu</label>
+		<textarea [(ngModel)]="ar.description_zh" class="langInput lang_zh"></textarea>
+	</div>
+	<div class="form-group">
+		<label>Parent View</label><br />
+		<select [(ngModel)]="ar.sight_id"  class="form-control">
+			<option value="">Select Parent View</option>
+			<option *ngFor="let sight of list_sights; index as i;" value="{{ sight.id }}">{{ sight.name_en }}</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<label>Status</label>
+		<select [(ngModel)]="ar.is_active" class="form-control">
+			<option value="true">Active</option>
+			<option value="false">Not Active</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<label>Select Android File</label>
+		<input type="text" name="file_url" [(ngModel)]="ar.file_url">
+	</div>
+	<div class="form-group">
+		<label>Select IOS File</label>
+		<input type="text" name="file_url2" [(ngModel)]="ar.file_url2">
+	</div>
+	<div class="form-group">
+	<label>Version</label>
+		<input type="number" [(ngModel)]="ar.version">
+	</div>
+	<!-- <form [formGroup]="fileUploadForm" (ngSubmit)="onFormSubmit()">
+		<div class="row">
+		  <div class="col-sm-12">
+			<div>
+			  <h6 class="head-title margin-top-8"><span>Select Android File</span></h6>
+			</div>
+		  </div>
+		  <div class="col-sm-6">
+	
+			<div class="custom-file">
+	
+			  <input type="file" class="custom-file-input" id="customFile" name="uploadedImage"
+				(change)="onFileSelect($event)" #UploadFileInput>
+	
+			  <label class="custom-file-label" for="customFile">{{fileInputLabel || 'Choose File'}}</label>
+			
+			</div>
+	
+		  </div>
+	
+		  <div class="col-sm-6"> <button class="btn btn-primary" type="submit">Upload</button> </div>
+	
+		</div>
+	  </form>
+	  <br />
+	  <div class="form-group" >
+		<a *ngIf="file" href="{{file}}" target="_blank" style="height: 100px;color: rgb(0, 68, 255);">Скачать загруженный файл</a>
+	</div> -->
+	
+
+	<!-- <form [formGroup]="fileUploadForm2" (ngSubmit)="onFormSubmit2()">
+		<div class="row">
+		  <div class="col-sm-12">
+			<div>
+			  <h6 class="head-title margin-top-8"><span>Select IOS File</span></h6>
+			</div>
+		  </div>
+		  <div class="col-sm-6">
+	
+			<div class="custom-file">
+	
+			  <input type="file" class="custom-file-input" id="customFile2" name="uploadedImage2"
+				(change)="onFileSelect2($event)" #UploadFileInput2>
+	
+			  <label class="custom-file-label" for="customFile2">{{fileInputLabel2 || 'Choose File'}}</label>
+			
+			</div>
+	
+		  </div>
+	
+		  <div class="col-sm-6"> <button class="btn btn-primary" type="submit">Upload</button> </div>
+	
+		</div>
+	  </form>
+	  <br />
+	  <div class="form-group" >
+		<a *ngIf="file2" href="{{file2}}" target="_blank" style="height: 100px;color: rgb(0, 68, 255);">Скачать загруженный файл</a>
+	</div> -->
+
+	<button (click)="saveAr()" style="padding: 8px;" class="button">Submit</button>
+</div>

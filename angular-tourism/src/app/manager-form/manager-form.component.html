@@ -1,0 +1,37 @@
+<h1 *ngIf="!this.editMode">Add new Manager</h1>
+<h1 *ngIf="this.editMode">Edit Manager</h1>
+<div *ngIf="submitted">
+	<a routerLink="/" style="padding: 10px;" class="button">Back to the Managers List</a>
+</div>
+<div *ngIf="!submitted">
+	<br />
+	<div class="form-group">
+		<label>E-mail</label>
+		<input type="email" name="email" [(ngModel)]="manager.email">
+	</div>
+	<div *ngIf="this.editMode" class="alert alert-warning">
+		You are now in <strong>edit mode</strong>! If you don't want to change password, please do not touch the Password fields
+	</div>
+	<div class="form-group">
+		<label>Password</label>
+		<input type="password" name="password" [(ngModel)]="manager.password">
+	</div>
+	<div class="form-group">
+		<label>Repeat Password</label>
+		<input type="password" name="password1" [(ngModel)]="manager.password1">
+	</div>
+	<div class="form-group">
+		<label>Role</label>
+		<select name="roles" [(ngModel)]="manager.roles" class="form-control">
+			<option  *ngFor="let title of role" [value]="title._id">{{title.name}}</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<label>Activity</label>
+		<select name="active" [(ngModel)]="manager.active" class="form-control">
+			<option value="true">Active</option>
+			<option value="false">Not Active</option>
+		</select>
+	</div>
+	<button (click)="saveManager()" style="padding: 8px;" class="button">Submit</button>
+</div>

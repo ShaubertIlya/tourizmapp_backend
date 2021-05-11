@@ -1,0 +1,220 @@
+<!-- <div id="app"> -->
+	<!-- <nav class="navbar navbar-expand navbar-dark bg-dark">
+	  <a href="#" class="navbar-brand">Asar</a>
+	  <ul class="navbar-nav mr-auto" routerLinkActive="active">
+		 <li class="nav-item">
+		  <a href="/home" class="nav-link" routerLink="">Home </a>
+		</li> 
+		<li class="nav-item" *ngIf="showAdminBoard" >
+		  <a href="/" class="nav-link" routerLink="">Managers</a>
+		</li>
+		<li class="nav-item" *ngIf="showAdminBoard">
+		  <a href="/users" class="nav-link" routerLink="users">Users</a>
+		</li>
+		<li class="nav-item">
+		  <a href="/sights" class="nav-link" *ngIf="isLoggedIn" routerLink="sights">Views</a>
+		</li>
+		<li class="nav-item">
+			<a href="/vr" class="nav-link" *ngIf="isLoggedIn" routerLink="vr">VR Catalog</a>
+		  </li>
+		  <li class="nav-item">
+			<a href="/ar" class="nav-link" *ngIf="isLoggedIn" routerLink="ar">AR Catalog</a>
+		  </li>
+		  <li class="nav-item">
+			<a href="/articles" class="nav-link" *ngIf="isLoggedIn" routerLink="articles">Articles Catalog</a>
+		  </li>
+		  <li class="nav-item">
+			<a href="/discounts" class="nav-link" *ngIf="isLoggedIn" routerLink="discounts">Discounts Catalog</a>
+		  </li>
+		  <li class="nav-item">
+			<a href="/syscat" class="nav-link" *ngIf="isLoggedIn" routerLink="syscat">System Catalog</a>
+		  </li>
+		  <li class="nav-item">
+			<a href="/comments" class="nav-link" *ngIf="isLoggedIn" routerLink="comments">Comment Catalog</a>
+		  </li>
+	  </ul>
+  
+	  <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+		 <li class="nav-item">
+		  <a href="/register" class="nav-link" routerLink="register">Sign Up</a>
+		</li> 
+		<li class="nav-item">
+		  <a href="/login" class="nav-link" routerLink="login">Login</a>
+		</li>
+	  </ul>
+  
+	  <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+		<li class="nav-item">
+		  <a href="/profile" class="nav-link" routerLink="profile">{{ email }}</a>
+		</li>
+		<li class="nav-item">
+		  <a href class="nav-link" (click)="logout()">LogOut</a>
+		</li>
+	  </ul>
+	</nav> -->
+	
+	<div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>ASAR ADMIN</h3>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li *ngIf="showAdminBoard">
+                    <a href="/" routerLink="">Managers</a>
+                </li>
+                <li *ngIf="showAdminBoard">
+                    <a href="/users" routerLink="users">Users</a>
+                </li>
+                <li>
+                    <a href="/sights" *ngIf="isLoggedIn" routerLink="sights">Views</a>
+                </li>
+
+				<li>
+                   <a href="/vr" *ngIf="isLoggedIn" routerLink="vr">VR Catalog</a>
+                </li>
+                <li>
+                    <a href="/ar" *ngIf="isLoggedIn" routerLink="ar">AR Catalog</a>
+                </li>
+                <li>
+                    <a href="/articles" *ngIf="isLoggedIn" routerLink="articles">Articles Catalog</a>
+                </li>
+
+				<li>
+					<a href="/discounts" *ngIf="isLoggedIn" routerLink="discounts">Discounts Catalog</a>
+				 </li>
+				 <li>
+					<!-- <a href="/syscat" *ngIf="isLoggedIn" routerLink="syscat"></a> -->
+					<!-- <a href="#pageSubmenu" *ngIf="isLoggedIn" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">System Catalog</a> -->
+					<a class="nav-link dropdown-toggle" *ngIf="isLoggedIn" href="#navbarDropdown"  role="button" data-toggle="collapse" aria-haspopup="false" aria-expanded="false">
+						System Catalog
+					  </a>
+					<ul class="collapse list-unstyled" id="navbarDropdown">
+					  <li>
+						<a href="/tags" *ngIf="isLoggedIn" routerLink="tags">Tags</a>
+
+					  </li>
+					  <li>
+						<a href="/countries" *ngIf="isLoggedIn" routerLink="countries">Country</a>
+
+					  </li>
+					  <li>
+						<a href="/cities" *ngIf="isLoggedIn" routerLink="cities">City</a>
+
+					  </li>
+					  <li>
+						<a href="/companies" *ngIf="isLoggedIn" routerLink="companies">Company</a>
+
+					  </li>
+					</ul>
+				 </li>
+				 
+				 <li>
+					<a href="/comments" *ngIf="isLoggedIn" routerLink="comments">Comment Catalog</a>
+				 </li>
+				 <li>
+					<a class="nav-link dropdown-toggle" *ngIf="isLoggedIn" href="#pageSubmenu2"  role="button" data-toggle="collapse" aria-haspopup="false" aria-expanded="false">Sliders</a>
+					<ul class="collapse list-unstyled" id="pageSubmenu2">
+					  <li>
+						<a href="/slider_list" *ngIf="isLoggedIn" routerLink="slider_list">Sight Slider</a>
+
+					  </li>
+					  <li>
+						<a href="/discountSlider_list" *ngIf="isLoggedIn" routerLink="discountSlider_list">Discount_Slider</a>
+
+					  </li>
+					  <li>
+						<a href="/articleSlider_list" *ngIf="isLoggedIn" routerLink="articleSlider_list">Article_Slider</a>
+
+					  </li>
+					</ul>
+				 </li>
+				 <li>
+				 </li>
+				 <li>
+				 </li>
+            </ul>
+
+            <ul class="list-unstyled CTAs">
+                <!-- <li>
+                    <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a>
+                </li>
+                <li>
+                    <a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a>
+                </li> -->
+				<li>
+					<a href="/login" *ngIf="isLoggedIn" class="article" (click)="logout()">LogOut</a>
+				 </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <!-- <div class="container-fluid"> -->
+
+                    <!-- <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-left"></i>
+                        <span>Toggle Sidebar</span>
+                    </button> -->
+					<button type="button" id="sidebarCollapse" class="btn btn-primary">
+						<i class="fa fa-bars"></i>
+						<span class="sr-only">Toggle Menu</span>
+					</button>
+                    <!-- <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-align-justify"></i>
+                    </button> -->
+
+                    
+                        <ul class="nav navbar-nav ml-auto">
+							<li class="nav-item active">
+								<a href="/profile" class="nav-link" routerLink="profile">{{ email }}</a>
+							  </li>
+							
+                        </ul>
+                  
+                <!-- </div> -->
+            </nav>
+
+          
+			<router-outlet></router-outlet>
+		
+		 </div>
+	
+		
+  </div>
+
+  <!-- </div> -->
+<!-- <div class="container-fluid">
+		<div class="menu">
+			<ul>
+				<li><a href="/" title="Managers" *ngIf="showAdminBoard">Managers</a></li>
+				<li><a href="/users" title="Users" *ngIf="showAdminBoard">Users</a></li>
+				<li><a href="/sights" title="Views">Views</a></li>
+				<li><a href="/vr" title="VR Catalog">VR Catalog</a></li>
+				<li><a href="/ar" title="AR Catalog">AR Catalog</a></li>
+				<li><a href="/articles" title="Articles Catalog">Articles Catalog</a></li>
+				<li><a href="/discounts" title="Discounts Catalog">Discounts Catalog</a></li>
+				<li><a href="/syscat" title="System Catalog">System Catalog</a></li>
+
+			</ul>
+			<div class="buttons">
+				<a href="/manager_form" class="button addManager" *ngIf="showAdminBoard" style="display: none;">Add Manager</a>
+				<a href="/user_form" class="button addUser" *ngIf="showAdminBoard" style="display: none;">Add User</a>
+				<a href="/article_form" class="button addArticle" style="display: none;">Add Article</a>
+				<a href="/discount_form" class="button addDiscount" style="display: none;">Add Discount</a>
+				<a href="/syscat/tags_form" class="button addTag" style="display: none;">Add Tag</a>
+				<a href="/syscat/country_form" class="button addCountry" style="display: none;">Add Country</a>
+				<a href="/syscat/city_form" class="button addCity" style="display: none;">Add City</a>
+				<a href="/syscat/company_form" class="button addCompany" style="display: none;">Add Company</a>
+				<a href="/sight_form" class="button addView" style="display: none;">Add View</a>
+				<a href="/ar_form" class="button addAr" style="display: none;">Add AR Content</a>
+
+			</div>
+		</div>
+	</div> -->
+	<!-- <div class="container-fluid">
+		<div class="content">
+			<router-outlet></router-outlet> -->

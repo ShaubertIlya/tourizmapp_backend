@@ -1,0 +1,105 @@
+			 <div class="search">
+				<div class="form-row align-items-left"> 
+					<input type="text" placeholder="Search by E-mail" [(ngModel)]="query" class="form-control">
+					<button type="button" (click)="searchManager()">Search</button>
+				</div>
+				<div class="col align-self-end" style="text-align: right;">
+					<button  type="button" style="padding: 8px;" routerLink="manager_form">Add Item</button>
+
+				</div>
+			</div> 
+			
+			<div style="overflow: auto;">
+				<table class="table table-striped">
+				<thead>
+					<tr>
+						<td>ID</td> 
+						<td>E-mail</td>
+						<td>Статус</td>
+						<td>Роль</td>
+						<td>Дата создания</td>
+						<td>Опции</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let record of list; index as i;">
+						<td>{{ i + 1 }}</td>
+						<td>{{ record.email }}</td>
+						<td>
+							<span *ngIf="record.active" class="badge badge-success">Active</span>
+							<span *ngIf="!record.active" class="badge badge-warning">Not Active</span>
+						</td>
+						<td>
+							<a  class="badge badge-warning">{{record.roles}}</a>
+						</td>
+						<td>
+							<a  class="badge badge-warning">{{record.create_date | date: 'dd-MM-yyyy H:mm:ss'}}</a>
+						</td>
+						<td>
+							<a routerLink="/manager_form/{{ record._id }}/{{record.roles}}" class="badge badge-warning">Edit</a>
+							<a href="javascript:void(0);" (click)="askDeleteManager(record._id)" class="onDelete badge badge-danger">Remove</a>
+						</td>
+					</tr>
+				</tbody>
+				</table>
+			</div>
+
+
+
+			<!-- <form >
+				<div class="form-group form-inline">
+					Full text search: <input class="form-control ml-2" type="text" name="searchTerm" [(ngModel)]="service.searchTerm"/>
+					<span class="ml-3" *ngIf="service.loading$ | async">Loading...</span>
+					<div class="col align-self-end" style="text-align: right;">
+						<button  type="button" style="padding: 8px;" routerLink="manager_form">Add Item</button>
+
+					</div>
+
+				</div>
+			  <div style="overflow: auto;">
+				<table  class="table table-striped">
+				  <thead>
+				  <tr>
+					<th scope="col">№</th>
+					<th scope="col" sortable="email" (sort)="onSort($event)" >Email</th>
+					<th scope="col" sortable="role" (sort)="onSort($event)">Role</th>
+					<th scope="col" sortable="status" (sort)="onSort($event)">Status</th>
+					<th scope="col" sortable="create_date" (sort)="onSort($event)">Create Date</th>
+
+					<th scope="col">Options</th>
+					
+				  </tr>
+				  </thead>
+				  <tbody>
+				  <tr *ngFor="let country of countries$ | async">
+					<th scope="row">{{ country._id }}</th>
+					<td>
+					  <ngb-highlight [result]="country.email" [term]="service.searchTerm"></ngb-highlight>
+					</td>
+					<td><ngb-highlight [result]="country.roles" [term]="service.searchTerm"></ngb-highlight></td>
+					<td><ngb-highlight [result]="country.active" [term]="service.searchTerm"></ngb-highlight></td>
+					<td><ngb-highlight [result]="country.create_date" [term]="service.searchTerm"></ngb-highlight></td>
+
+					<td>
+						<a routerLink="/manager_form/{{ country._id }}/{{country.roles}}" class="badge badge-warning">Edit</a>
+						<a href="javascript:void(0);" (click)="askDeleteManager(country._id)" class="onDelete badge badge-danger">Remove</a>
+
+					</td> 
+				
+				</tr>
+				  </tbody>
+				</table>
+			</div>
+				<div class="d-flex justify-content-between p-2">
+				  <ngb-pagination
+					[collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize">
+				  </ngb-pagination>
+			  
+				  <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
+					<option [ngValue]="2">2 items per page</option>
+					<option [ngValue]="4">4 items per page</option>
+					<option [ngValue]="6">6 items per page</option>
+				  </select>
+				</div>
+			  
+			  </form> -->

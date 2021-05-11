@@ -1,0 +1,46 @@
+
+<h1 *ngIf="this.editMode">Edit comment</h1>
+<div *ngIf="submitted">
+	<a routerLink="/comments" style="padding:10px;" class="button">Back to the comments List</a>
+</div>
+<div *ngIf="!submitted">
+	<br />
+    <div class="form-group">
+		<label>Text</label>
+		<input type="email" name="text" [(ngModel)]="comment.text" readonly>
+	</div>
+	<div class="form-group">
+		<label>userToken</label>
+		<input type="text" name="userToken" [(ngModel)]="comment.userToken" readonly>
+	</div>
+	<div class="form-group">
+		<label>Object</label>
+		<select name="status" [(ngModel)]="comment.status" class="form-control">
+			<option value="true">Active</option>
+			<option value="false">Not Active</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<label>Rating</label>
+		<input type="text" name="rating" [(ngModel)]="comment.rating" readonly>
+	</div>
+	<div class="form-group">
+		<label>Date</label>
+		<p style="font-weight: bold;
+		border: 1px solid silver;
+		padding: 0px 4px 0px;
+		color: #555d64;">{{comment.createDate | date: 'dd-MM-yyyy H:mm:ss'}}</p>
+	</div>
+	
+	<div class="form-group">
+		<label>Object</label>
+		<input type="text" name="content_name" [(ngModel)]="comment.content_name" readonly>
+
+	</div>
+	<div class="form-group">
+		<label>Answer</label>
+		<input type="text" name="answer" [(ngModel)]="comment.answer" >
+
+	</div>
+	<button (click)="savecomment()" style="padding: 8px;" class="button">Submit</button>
+</div>

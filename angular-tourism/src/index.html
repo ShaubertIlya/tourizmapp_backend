@@ -1,0 +1,136 @@
+  
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>AngularTourism</title>
+	<base href="/">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/x-icon" href="favicon.ico">
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+
+  <link href="/assets/css/simple-sidebar.css" rel="stylesheet">
+
+</head>
+<body>
+	<div class="fade"></div>
+	<div id="confirmWindow" class="popup_window" style="display: none;">
+		<a href="javascript:void(0);" class="closePopup"></a>
+		<h1>Delete</h1>
+		<p class="confirm"></p>
+		<div class="btns">
+			<a href="javascript:void(0);" class="confirm">Yes</a>
+			<a href="javascript:void(0);" class="decline">No</a>
+		</div>
+	</div>
+	<div id="viewWindow" class="popup_window" style="display: none;">
+		<a href="javascript:void(0);" class="closePopup"></a>
+		<h1>Edit View</h1>
+		<p class="confirm">What do you want to edit?</p>
+		<div class="btns full">
+			<a href="javascript:void(0);" class="editAbout">About</a>
+			<a href="javascript:void(0);" class="">VR Content</a>
+			<a href="javascript:void(0);" class="">AR Content</a>
+			<a href="javascript:void(0);" class="">Articles</a>
+			<a href="javascript:void(0);" class="">Comments and Rating</a>
+		</div>
+	</div>
+	
+	<app-root></app-root>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="/assets/js/select2.min.js"></script>
+	<script src="/assets/js/popper.js"></script>
+	<script src="/assets/js/bootstrap.min.js"></script>
+	<script src="/assets/js/main.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+			$('.list-unstyled li a').click(function(e) {
+
+$('.list-unstyled li.active').removeClass('active');
+
+var $parent = $(this).parent();
+$parent.addClass('active');
+e.preventDefault();
+});
+        });
+    </script>
+	<script>
+
+	$(document).ready(function() {
+	
+		$('.select2').select2();
+	
+		if ($('.country_select').length) {
+			$('.country_select').change();
+		}
+		
+		$(document).off('click', '.switchLang').on('click', '.switchLang', function() {
+		
+			var this_lang = $(this).attr('lang');
+			$('.langInput').hide();
+			$('.langInput.lang_' + this_lang).show();
+			
+			$('.switchLang').removeClass('active');
+			$(this).addClass('active');
+			
+		});
+		if ($('.switchLang').length) {
+			$('.switchLang').first().click();			
+		}
+	
+		/* Close the popup */
+		$(document).on('click', 'div.fade', function() {
+		
+			$('.popup_window').fadeOut('fast');
+			$('div.fade').fadeOut('slow');
+			$('.activePopup').removeClass('activePopup');
+			deleteConfirmed = false;
+			
+		});
+		$(document).on('click', '.closePopup', function() {
+			$('div.fade').click();
+		});
+		
+		$('.popup_window').each(function() {
+		
+			var this_height = $(this).height() / 2 + 100;
+			$(this).css('margin-top', '-' + this_height + 'px');
+		
+		});
+		$('.nav li > #pageSubmenu2').parent().click(function() {
+  var submenu = $(this).children('#pageSubmenu2');
+  if ( $(submenu).is(':hidden') ) {
+    $(submenu).slideDown(200);
+  } else {
+    $(submenu).slideUp(200);
+  }
+});
+$('.nav li > #navbarDropdown').parent().click(function() {
+  var submenu = $(this).children('#navbarDropdown');
+  if ( $(submenu).is(':hidden') ) {
+    $(submenu).slideDown(200);
+  } else {
+    $(submenu).slideUp(200);
+  }
+});
+	});
+	
+	</script>
+	<script src="/assets/js/bootstrap/js/bootstrap.bundle.min.js"></script>
+  
+	<!-- Menu Toggle Script -->
+	<script>
+	  $("#menu-toggle").click(function(e) {
+		e.preventDefault();
+		$("#wrapper").toggleClass("toggled");
+	  });
+	</script>
+</body>
+</html>

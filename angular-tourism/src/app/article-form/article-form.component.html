@@ -1,0 +1,117 @@
+<h1 *ngIf="!this.editMode">Add new Article</h1>
+<h1 *ngIf="this.editMode">Edit Article</h1>
+
+<div>
+	<br />
+	<div class="form-group">
+		<label>Main Header en</label>
+		<input type="text" [(ngModel)]="article.main_header_en">
+		<label>Main Header ru</label>
+		<input type="text" [(ngModel)]="article.main_header_ru">
+		<label>Main Header kz</label>
+		<input type="text" [(ngModel)]="article.main_header_kz" >
+		<label>Main Header es</label>
+		<input type="text" [(ngModel)]="article.main_header_es">
+		<label>Main Header deu</label>
+		<input type="text" [(ngModel)]="article.main_header_zh">
+	</div>
+	<div class="form-group">
+		<label>Short Description en</label>
+		<textarea [(ngModel)]="article.sdescription_en" class="langInput lang_en"></textarea>
+		<label>Short Description ru</label>
+		<textarea [(ngModel)]="article.sdescription_ru" class="langInput lang_ru"></textarea>
+		<label>Short Description kz</label>
+		<textarea [(ngModel)]="article.sdescription_kz" class="langInput lang_kz"></textarea>
+		<label>Short Description es</label>
+		<textarea [(ngModel)]="article.sdescription_es" class="langInput lang_es"></textarea>
+		<label>Short Description deu</label>
+		<textarea [(ngModel)]="article.sdescription_zh" class="langInput lang_zh"></textarea>
+	</div>
+	<div class="form-group">
+		<label>Full Description en</label>
+		<textarea [(ngModel)]="article.description_en" class="langInput lang_en"></textarea>
+		<label>Full Description ru</label>
+		<textarea [(ngModel)]="article.description_ru" class="langInput lang_ru"></textarea>
+		<label>Full Description kz</label>
+		<textarea [(ngModel)]="article.description_kz" class="langInput lang_kz"></textarea>
+		<label>Full Description es</label>
+		<textarea [(ngModel)]="article.description_es" class="langInput lang_es"></textarea>
+		<label>Full Description deu</label>
+		<textarea [(ngModel)]="article.description_zh" class="langInput lang_zh"></textarea>
+	</div>
+	<div class="form-group">
+		<label>Country</label>
+		<select [(ngModel)]="article.country_id" (change)="onChangeCountry($event.target.value)" class="country_select form-control">
+			<option value="">Select Country</option>
+			<option *ngFor="let country of list_countries; index as i;" value="{{ country.id }}">{{ country.name_en }}</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<label>City</label>
+		<select [(ngModel)]="article.city_id" class="form-control">
+			<option value="">Select City</option>
+			<option *ngFor="let city of list_cities; index as i;" value="{{ city.id }}">{{ city.name_en }}</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<label>Tags</label>
+		<select [(ngModel)]="article.tags" multiple size="10" class="form-control">
+			<option *ngFor="let tag of list_tags; index as i;" value="{{ tag.id }}">{{ tag.name_en }}</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<label>Parent View</label><br />
+		<select [(ngModel)]="article.sight_id" name="sight_id" >
+			<option value="">Select Parent View</option>
+			<option *ngFor="let sight of list_sights" [value]="sight.id">{{ sight.name_en }}</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<label>Slider</label><br />
+		<select [(ngModel)]="article.slider_id" name="slider_id" >
+			<option value="">Select Slider</option>
+			<option *ngFor="let sight of list_slider" [value]="sight._id">{{ sight.name }}</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<label>Status</label>
+		<select [(ngModel)]="article.is_active" class="form-control">
+			<option value="true">Active</option>
+			<option value="false">Not Active</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<label>Rating</label>
+		<input type="number" [(ngModel)]="article.avg_rating">
+	</div>
+	<label>Views Count</label>
+	<input type="number" [(ngModel)]="article.views_count">
+	<form [formGroup]="fileUploadForm" (ngSubmit)="onFormSubmit()">
+		<div class="row">
+		  <div class="col-sm-12">
+			<div>
+			  <h6 class="head-title margin-top-8"><span>Select Image File</span></h6>
+			</div>
+		  </div>
+		  <div class="col-sm-6">
+	
+			<div class="custom-file">
+	
+			  <input type="file" class="custom-file-input" id="customFile" name="uploadedImage"
+				(change)="onFileSelect($event)" #UploadFileInput>
+	
+			  <label class="custom-file-label" for="customFile">{{fileInputLabel || 'Choose File'}}</label>
+			
+			</div>
+	
+		  </div>
+	
+		  <div class="col-sm-6"> <button class="btn btn-primary" type="submit">Upload</button> </div>
+	
+		</div>
+	  </form>
+	  <div class="form-group">
+		<img src = {{image}} style="height: 100px;"/>
+	</div>
+	<button (click)="saveArticle()" style="padding: 8px;" class="button">Submit</button>
+</div>

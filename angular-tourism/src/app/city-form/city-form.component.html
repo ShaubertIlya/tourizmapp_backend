@@ -1,0 +1,38 @@
+<h1 *ngIf="!this.editMode">Add new City</h1>
+<h1 *ngIf="this.editMode">Edit City</h1>
+<a href="/cities" class="button" style="display: inline-block !important; width: auto !important;">Cities List</a>
+<br />
+<br />
+
+<div>
+	<br />
+	<div class="form-group">
+		<label>Country</label>
+		<select name="country_id" [(ngModel)]="city.country_id" class="form-control">
+			<option value="">Select Country</option>
+			<option *ngFor="let country of list_countries; index as i;" value="{{ country.id }}">{{ country.name_en }}</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<label>City en</label>
+		<input type="text" [(ngModel)]="city.name_en">
+		<label>City ru</label>
+		<input type="text" [(ngModel)]="city.name_ru">
+		<label>City kz</label>
+		<input type="text" [(ngModel)]="city.name_kz">
+		<label>City es</label>
+		<input type="text" [(ngModel)]="city.name_es">
+		<label>City deu</label>
+		<input type="text" [(ngModel)]="city.name_zh" >
+		<label>IATA code</label>
+		<input type="text" [(ngModel)]="city.iata">
+	</div>
+	<div class="form-group">
+		<label>Status</label>
+		<select name="is_active" [(ngModel)]="city.is_active" class="form-control">
+			<option value="true">Active</option>
+			<option value="false">Not Active</option>
+		</select>
+	</div>
+	<button (click)="saveCity()" style="padding: 8px;" class="button">Submit</button>
+</div>

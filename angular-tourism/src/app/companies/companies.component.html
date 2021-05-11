@@ -1,0 +1,45 @@
+			<div class="row">
+				<div class="col"> 
+					<input type="text" placeholder="Search by Company Name" [(ngModel)]="query" class="form-control">
+				</div>
+
+					<div class="col"> 
+
+					<button type="button" style="padding: 7px !important;" (click)="searchCompany()">Search</button>
+				</div>
+				<div class="col" > 
+					<button type="button" style="padding: 7px !important;" routerLink="company_form">Add Item</button>
+				</div>
+			</div>
+			<div style="overflow: auto;">
+				<table class="table table-striped">
+				<thead>
+					<tr>
+						<td>ID</td> 
+						<td>Название</td>
+						<td>Статус</td>
+						<td>Сайт</td>
+						<td>БИН / ИИН</td>
+						<td>Статус</td>
+						<td>Опции</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let record of list; index as i;">
+						<td>{{ i + 1 }}</td>
+						<td>{{ record.name_en }}</td>
+						<td>{{ record.webSite }}</td>
+						<td>{{ record.webSite }}</td>
+						<td>{{ record.bin_iin }}</td>
+						<td>
+							<span *ngIf="record.is_active" class="badge badge-success">Active</span>
+							<span *ngIf="!record.is_active" class="badge badge-warning">Not Active</span>
+						</td>
+						<td>
+							<a href="/company_form/{{ record.id }}" class="badge badge-warning">Edit</a>
+							<a href="javascript:void(0);" (click)="askDelete(record.id)" class="onDelete badge badge-danger">Remove</a>
+						</td>
+					</tr>
+				</tbody>
+				</table>
+			</div>

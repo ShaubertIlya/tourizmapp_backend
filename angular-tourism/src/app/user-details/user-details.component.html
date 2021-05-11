@@ -1,0 +1,77 @@
+<h1>User Details</h1>
+<div *ngIf="!submitted">
+	<br />
+	<div class="form-group">
+		<label>E-mail</label>
+		<input type="email" name="email" [(ngModel)]="user.email" readonly>
+	</div>
+	<div class="form-group">
+		<label>Full Name</label>
+		<input type="text" name="full_name" [(ngModel)]="user.full_name" readonly>
+	</div>
+	<div class="form-group">
+		<label>Status</label>
+		<select name="active" [(ngModel)]="user.active" class="form-control" readonly>
+			<option value="true">Active</option>
+			<option value="false">Not Active</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<label>Join Date</label>
+		<input type="date" name="join_date" [(ngModel)]="user.join_date" readonly>
+	</div>
+	<div class="form-group">
+		<label>Country</label>
+		<select name="country_id" [(ngModel)]="user.country_id" (change)="onChangeCountry($event.target.value)" class="country_select form-control" readonly>
+			<option value="">Select Country</option>
+			<option *ngFor="let country of list_countries; index as i;" value="{{ country.id }}">{{ country.name_en }}</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<label>City</label>
+		<select name="city_id" [(ngModel)]="user.city_id" class="form-control" readonly>
+			<option value="">Select City</option>
+			<option *ngFor="let city of list_cities; index as i;" value="{{ city.id }}">{{ city.name_en }}</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<label>Avatar</label>
+		<input type="text" name="avatar_url" [(ngModel)]="user.avatar_url" readonly>
+	</div>
+	<div class="form-group">
+		<label>Gender</label>
+		<select name="gender" [(ngModel)]="user.gender" class="form-control" readonly>
+			<option value="male">Male</option>
+			<option value="female">Female</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<label>Points</label>
+		<input type="text" name="points" [(ngModel)]="user.points" readonly>
+	</div>
+	<div class="form-group">
+		<label>Rang</label>
+		<select name="rang" [(ngModel)]="user.rang" class="form-control" readonly>
+			<option value="new">New</option>
+			<option value="silver">Silver</option>
+			<option value="gold">Gold</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<label>Comments</label>
+		<input type="text" name="comments_count" [(ngModel)]="user.comments_count" readonly>
+	</div>
+	<div class="form-group">
+		<label>Favourite Articles</label>
+		<input type="text" name="articles_count" [(ngModel)]="user.articles_count" readonly>
+		<ul class="sub_list">
+			<li *ngFor="let favor_art of favor_articles_format;">
+				<a href="/article_form/{{ favor_art.id }}">{{ favor_art.title }}</a>
+			</li>
+		</ul>
+	</div>
+	<div class="form-group">
+		<label>Favourite Sights</label>
+		<input type="text" name="sights_count" [(ngModel)]="user.sights_count" readonly>
+	</div>
+</div>

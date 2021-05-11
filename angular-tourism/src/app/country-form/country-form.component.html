@@ -1,0 +1,30 @@
+<h1 *ngIf="!this.editMode">Add new Country</h1>
+<h1 *ngIf="this.editMode">Edit Country</h1>
+<a href="/countries" class="button" style="display: inline-block !important; width: auto !important;">Countries List</a>
+<br />
+<br />
+
+<div>
+	<br />
+	<div class="form-group">
+		<label>Country en</label>
+		<input type="text" [(ngModel)]="country.name_en" >
+		<label>Country ru</label>
+		<input type="text" [(ngModel)]="country.name_ru">
+		<label>Country kz</label>
+		<input type="text" [(ngModel)]="country.name_kz" >
+		<label>Country es</label>
+		<input type="text" [(ngModel)]="country.name_es">
+		<label>Country deu</label>
+		<input type="text" [(ngModel)]="country.name_zh">
+	
+	</div>
+	<div class="form-group">
+		<label>Status</label>
+		<select name="is_active" [(ngModel)]="country.is_active" class="form-control">
+			<option value="true">Active</option>
+			<option value="false">Not Active</option>
+		</select>
+	</div>
+	<button (click)="saveCountry()" style="padding: 8px;" class="button">Submit</button>
+</div>

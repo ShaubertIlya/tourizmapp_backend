@@ -1,0 +1,123 @@
+			 <div class="row">
+				<div class="col"> 
+					<input type="text" placeholder="Search by E-mail, Token" [(ngModel)]="query" class="form-control">
+				</div>
+				<div class="col"> 
+					<button type="button" style="padding: 7px !important;" (click)="searchUser()">Search</button>
+				</div>
+				<div class="col" > 
+					<button type="button" style="padding: 7px !important;"  (click)="user_xl()">Export Items</button>
+	</div>
+				<div class="col" > 
+					<button type="button" style="padding: 7px !important;" routerLink="/user_form">Add Item</button>
+	</div>
+			</div> 
+			
+			<div style="overflow: auto;">
+				<table class="table table-striped">
+				<thead>
+					<tr>
+						<td>ID</td> 
+						<td>Token</td>
+						<td>E-mail</td>
+						<td>ФИО</td>
+						<td>Статус</td>
+						<td>Очки</td>
+						<td>Ранг</td>
+						<td>Пол</td>
+						<td>Опции</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let record of list; index as i;">
+						<td>{{ i + 1 }}</td>
+						<td>{{ record.id }}</td>
+						<td>{{ record.email }}</td>
+						<td>{{ record.full_name }}</td>
+						<td>
+							<span *ngIf="record.active" class="badge badge-success">Active</span>
+							<span *ngIf="!record.active" class="badge badge-warning">Not Active</span>
+						</td>
+						<td>{{ record.points }}</td>
+						<td class="toupper"><span class="badge badge-info">{{ record.rang }}</span></td>
+						<td class="toupper">{{ record.gender }}</td>
+						<td>
+							<a routerLink="/user_details/{{ record.id }}" class="badge badge-info">View</a>
+							<a routerLink="/user_form/{{ record.id }}" class="badge badge-warning">Edit</a>
+							<a href="javascript:void(0);" (click)="askDeleteUser(record.id)" class="onDelete badge badge-danger">Remove</a>
+						</td>
+					</tr>
+				</tbody>
+				</table>
+			</div>
+
+<!-- 			
+
+			<form>
+				<div class="form-group form-inline">
+					Full text search: <input class="form-control ml-2" type="text" name="searchTerm" [(ngModel)]="service.searchTerm"/>
+					<span class="ml-3" *ngIf="service.loading$ | async">Loading...</span>
+
+					<div class="col align-self-end" style="text-align: right;">
+						<button  type="button" style="padding: 8px;" routerLink="/user_form">Add User</button>
+
+					</div>
+				</div>
+			    <div style="overflow: auto;">
+				<table class="table table-striped">
+				  <thead>
+				  <tr>
+					<th scope="col">#</th>
+					<th scope="col" sortable="full_name" (sort)="onSort($event)" >ФИО</th>
+					<th scope="col" sortable="email" (sort)="onSort($event)">Email</th>
+					<th scope="col" sortable="points" (sort)="onSort($event)" >Баллы</th>
+					<th scope="col" sortable="country" (sort)="onSort($event)">Страна</th>
+					<th scope="col" sortable="city" (sort)="onSort($event)" >Город</th>
+					<th scope="col" sortable="rang" (sort)="onSort($event)">Ранг</th>
+					<th scope="col" sortable="gender" (sort)="onSort($event)">Пол</th>
+					<th scope="col" sortable="active" (sort)="onSort($event)">Статус</th>
+					<th scope="col" sortable="active" (sort)="onSort($event)">Опции</th>
+				  </tr>
+				  </thead>
+				  <tbody>
+				  <tr *ngFor="let country of countries$ | async">
+					<th scope="row">{{ country.id }}</th>
+					<td>
+					 
+					  <ngb-highlight [result]="country.full_name" [term]="service.searchTerm"></ngb-highlight>
+					</td>
+					<td><ngb-highlight [result]="country.email" [term]="service.searchTerm"></ngb-highlight></td>
+					 <td><ngb-highlight [result]="country.country" [term]="service.searchTerm"></ngb-highlight></td> -->
+<!-- 
+					<td>
+					 
+						<ngb-highlight [result]="country.points" [term]="service.searchTerm"></ngb-highlight>
+					  </td>
+					  <td><ngb-highlight [result]="country.country_id" [term]="service.searchTerm"></ngb-highlight></td>
+					  <td><ngb-highlight [result]="country.city_id" [term]="service.searchTerm"></ngb-highlight></td>
+
+					  <td><ngb-highlight [result]="country.rang" [term]="service.searchTerm"></ngb-highlight></td>
+					  <td><ngb-highlight [result]="country.gender" [term]="service.searchTerm"></ngb-highlight></td>
+					  <td><ngb-highlight [result]="country.active" [term]="service.searchTerm"></ngb-highlight></td>
+					  <td>
+						<a routerLink="/user_details/{{ country.id }}" class="badge badge-info">View</a>
+						<a routerLink="/user_form/{{ country.id }}" class="badge badge-warning">Edit</a>
+						<a href="javascript:void(0);" (click)="askDeleteUser(country.id)" class="onDelete badge badge-danger">Remove</a>
+					</td>
+				  </tr>
+				  </tbody>
+				</table>
+			</div>
+				<div class="d-flex justify-content-between p-2">
+				  <ngb-pagination
+					[collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize">
+				  </ngb-pagination>
+			  
+				  <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
+					<option [ngValue]="2">2 items per page</option>
+					<option [ngValue]="4">4 items per page</option>
+					<option [ngValue]="6">6 items per page</option>
+				  </select>
+				</div>
+			  
+			  </form> -->

@@ -1,0 +1,40 @@
+			<div class="row">
+				<div class="col"> 
+					<input type="text" placeholder="Search by Tag Name" [(ngModel)]="query" class="form-control">
+				</div>
+					<div class="col">
+					<button type="button" style="padding: 7px !important;" (click)="searchTag()">Search</button>
+				
+			</div>
+				<div class="col"> 
+					<button type="button" style="padding: 7px !important;" routerLink="tags_form">Add Item</button>
+				</div>
+			</div>
+			<div class="bordered full">
+				<table>
+				<thead>
+					<tr>
+						<td>ID</td> 
+						<td>Название</td>
+						<td>Статус</td>
+						<td>Дата создания</td>
+						<td>Опции</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let record of list; index as i;">
+						<td>{{ i + 1 }}</td>
+						<td>{{ record.name_en }}</td>
+						<td>
+							<span *ngIf="record.is_active" class="badge badge-success">Active</span>
+							<span *ngIf="!record.is_active" class="badge badge-warning">Not Active</span>
+						</td>
+						<td>{{ record.createdAt | date: 'dd-MM-yyyy H:mm:ss' }}</td>
+						<td>
+							<a href="/tags/tags_form/{{ record.id }}" class="badge badge-warning">Edit</a>
+							<a href="javascript:void(0);" (click)="askDelete(record.id)" class="onDelete badge badge-danger">Remove</a>
+						</td>
+					</tr>
+				</tbody>
+				</table>
+			</div>

@@ -1,0 +1,49 @@
+			<div class="row">
+				<div class="col"> 
+					<input type="text" placeholder="Search by Name" [(ngModel)]="query" class="form-control">
+				</div>
+
+					<div class="col">	<button type="button"  style="padding: 7px !important;" (click)="searchCity()">Search</button>
+				</div>
+				<div class="col">
+					<select (change)="filterByCountry($event.target.value)" class="form-control">
+						<option value="">Filter By Country</option>
+						<option *ngFor="let country of list_countries; index as i;" value="{{ country.id }}">{{ country.name_en }}</option>
+					</select>					
+				</div>
+				<div class="col" > 
+					<button type="button" style="padding: 7px !important;" routerLink="city_form">Add Item</button>
+				</div>
+			</div>
+			<div style="overflow: auto;">
+				<table class="table table-striped">
+				<thead>
+					<tr>
+						<td>ID</td> 
+						<td>Название</td>
+						<td>Страна</td>
+						<td>Iata Код</td>
+						<td>Статус</td>
+						<td>Дата создания</td>
+						<td>Опции</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let record of list; index as i;">
+						<td>{{ i + 1 }}</td>
+						<td>{{ record.name_en }}</td>
+						<td>{{ record.country_id }}</td>
+						<td>{{ record.iata }}</td>
+						<td>
+							<span *ngIf="record.is_active" class="badge badge-success">Active</span>
+							<span *ngIf="!record.is_active" class="badge badge-warning">Not Active</span>
+						</td>
+						<td>{{ record.createdAt | date: 'dd-MM-yyyy H:mm:ss' }}</td>
+						<td>
+							<a href="/city_form/{{ record.id }}" class="badge badge-warning">Edit</a>
+							<a href="javascript:void(0);" (click)="askDelete(record.id)" class="onDelete badge badge-danger">Remove</a>
+						</td>
+					</tr>
+				</tbody>
+				</table>
+			</div>

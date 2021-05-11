@@ -1,0 +1,29 @@
+<h1 *ngIf="!this.editMode">Add new Tag</h1>
+<h1 *ngIf="this.editMode">Edit Tag</h1>
+<a href="/tags" class="button" style="display: inline-block !important; width: auto !important;">Tags List</a>
+<br />
+<br />
+
+<div>
+	<br />
+	<div class="form-group">
+		<label>Tag Name en</label>
+		<input type="text" [(ngModel)]="tag.name_en">
+		<label>Tag Name ru</label>
+		<input type="text" [(ngModel)]="tag.name_ru">
+		<label>Tag Name kz</label>
+		<input type="text" [(ngModel)]="tag.name_kz">
+		<label>Tag Name es</label>
+		<input type="text" [(ngModel)]="tag.name_es">
+		<label>Tag Name deu</label>
+		<input type="text" [(ngModel)]="tag.name_zh">
+	</div>
+	<div class="form-group">
+		<label>Status</label>
+		<select name="is_active" [(ngModel)]="tag.is_active" class="form-control">
+			<option value="true">Active</option>
+			<option value="false">Not Active</option>
+		</select>
+	</div>
+	<button (click)="saveTag()" style="padding: 8px;" class="button">Submit</button>
+</div>

@@ -1,0 +1,62 @@
+			<div class="row">
+				<div class="col"> 
+					<input type="text" placeholder="Search by Title" [(ngModel)]="query" class="form-control">
+				</div>
+
+					<div class="col"> 
+					<button type="button" style="padding: 7px !important;" (click)="searchDiscount()">Search</button>
+				</div>
+				
+				<div class="col">
+					<select (change)="onChangeCountry($event.target.value)" class="form-control">
+						<option value="">Filter By Country</option>
+						<option *ngFor="let country of list_countries; index as i;" value="{{ country.id }}">{{ country.name_en }}</option>
+					</select>					
+				</div>
+				<div class="col"> 
+					<button type="button" style="padding: 7px !important;" (click)="discount_xl()">Export</button>
+				</div>
+				<div class="col"> 
+					<button type="button" style="padding: 7px !important;" routerLink="/discount_form">Add Item</button>
+				</div>
+			</div>
+			<div style="overflow: auto;">
+				<table class="table table-striped">
+				<thead>
+					<tr>
+						<td>ID</td> 
+						<td>Название</td>
+						<td>Статус</td>
+						<td>Начало</td>
+						<td>Конец</td>
+						<td>Страна</td>
+						<td>Просмотры</td>
+						<td>Рейтинг</td>
+						<td>Город</td>
+						<td>Достопремичательность</td>
+						<td>Опции</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let record of list; index as i;">
+						<td>{{ i + 1 }}</td>
+						<td>{{ record.main_header_en }}</td>
+						<td>
+							<span *ngIf="record.is_active" class="badge badge-success">Active</span>
+							<span *ngIf="!record.is_active" class="badge badge-warning">Not Active</span>
+						</td>
+						<td>{{ record.available_date }}</td>
+						<td>{{ record.available_date_end }}</td>
+						<td>{{ record.country_id }}</td>
+						<td>{{ record.views_count }}</td>
+						<td>{{ record.avg_rating }}</td>
+						<td>{{ record.city_id }}</td>
+						<td>{{ record.sight_id }}</td>
+						<td>
+							<a href="/discount_form/{{ record.id }}" class="badge badge-warning">Edit</a>
+							<a href="javascript:void(0);" (click)="askDeleteDiscount(record.id)" class="onDelete badge badge-danger">Remove</a>
+						</td>
+					</tr>
+				</tbody>
+				</table>
+			</div>
