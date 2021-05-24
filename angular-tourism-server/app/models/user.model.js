@@ -19,7 +19,9 @@ module.exports = mongoose => {
 		lang: String,
 		change_code: String,
         active: Boolean,
-        create_date:Number
+        create_date:Number,
+        gmail_token:String,
+        fb_token:String
       },
       { timestamps: true }
   );

@@ -2424,30 +2424,7 @@ app.post("/api/v1/users/social_register", (request, response) => {
 if(type == 1){
   User.findOne({ gmail_token: u_email }, function (err, result) {
     if (result) {
-        /* Profile Data */
-        profileData = {
-          gmail_token: u_email,
-          image_url: result.avatar_url,
-          email:"",
-          nickname: result.full_name,
-          rang: result.rang,
-          points: result.points,
-          gender: result.gender,
-          country_id: result.country_id,
-          country: result.country_id,
-          city_id: result.city_id,
-          city: result.city_id,
-          is_active: result.active,
-        };
-  
-        /* Generate Token */
-        var u_token = result._id;
-        response.json({
-          status: 200,
-          token: u_token,
-          profile: profileData,
-          message: "Successfully logged in",
-        });
+      response.json({ status: 400, message: "gmail_token Exists" });
     } else {
       /* Saving User */
       userData = new User({
@@ -2465,37 +2442,14 @@ if(type == 1){
       });
 
       userData.save(function (err, newUser) {
-        response.json({ status: 200, token: newUser._id, message: "Successfully registered" });
+        response.json({ status: 200, userId: newUser._id, message: "Success" });
       });
     }
   });
 } else{
   User.findOne({ fb_token: u_email }, function (err, result) {
     if (result) {
-      /* Profile Data */
-      profileData = {
-        facebook_token: u_email,
-        email:"",
-        image_url: result.avatar_url,
-        nickname: result.full_name,
-        rang: result.rang,
-        points: result.points,
-        gender: result.gender,
-        country_id: result.country_id,
-        country: result.country_id,
-        city_id: result.city_id,
-        city: result.city_id,
-        is_active: result.active,
-      };
-
-      /* Generate Token */
-      var u_token = result._id;
-      response.json({
-        status: 200,
-        token: u_token,
-        profile: profileData,
-        message: "Successfully logged in",
-      });
+      response.json({ status: 400, message: "fb_token Exists" });
     } else {
       /* Saving User */
       userData = new User({
@@ -2513,7 +2467,7 @@ if(type == 1){
       });
 
       userData.save(function (err, newUser) {
-        response.json({ status: 200, token: newUser._id, message: "Successfully registered" });
+        response.json({ status: 200, userId: newUser._id, message: "Success" });
       });
     }
   });
@@ -2529,16 +2483,10 @@ app.post("/api/v1/users/social_login", (request, response) => {
   var type = request.body.token_type;
 
   /* Validation */
-  if (!u_email) {
+  if (!u_email || !type) {
     response.json({
       status: 400,
-      message: "Missing Required Parameters: soc_token",
-    });
-  }
-  if (!type) {
-    response.json({
-      status: 400,
-      message: "Missing Required Parameters: type",
+      message: "Missing Required Parameters: soc_token / type",
     });
   }
 
@@ -2546,23 +2494,7 @@ app.post("/api/v1/users/social_login", (request, response) => {
   /* Check User Exists */
   User.findOne({ gmail_token: u_email }, function (err, result) {
     if (!result) {
-      userData = new User({
-        gmail_token:u_email,
-        email: "",
-        password: "",
-        avatar_url: "",
-        full_name: "",
-        gender: "",
-        country_id: "",
-        city_id: "",
-        points: "",
-        rang: "",
-        active: true
-      });
-
-      userData.save(function (err, newUser) {
-        response.json({ status: 200, token: newUser._id, message: "Successfully registered" });
-      });
+      response.json({ status: 400, message: "Invalid Credentials" });
     } else {
       /* Profile Data */
       profileData = {
@@ -2582,10 +2514,10 @@ app.post("/api/v1/users/social_login", (request, response) => {
       /* Generate Token */
       var u_token = result._id;
       response.json({
-        status: 200,
+        status: 400,
         token: u_token,
         profile: profileData,
-        message: "Successfully logged in",
+        message: "Success",
       });
     }
   });
@@ -2593,23 +2525,7 @@ app.post("/api/v1/users/social_login", (request, response) => {
    /* Check User Exists */
    User.findOne({ fb_token: u_email }, function (err, result) {
     if (!result) {
-      userData = new User({
-        fb_token:u_email,
-        email: "",
-        password: "",
-        avatar_url: "",
-        full_name: "",
-        gender: "",
-        country_id: "",
-        city_id: "",
-        points: "",
-        rang: "",
-        active: true
-      });
-
-      userData.save(function (err, newUser) {
-        response.json({ status: 200, token: newUser._id, message: "Successfully registered" });
-      });
+      response.json({ status: 400, message: "Invalid Credentials" });
     } else {
       /* Profile Data */
       profileData = {
@@ -2629,10 +2545,10 @@ app.post("/api/v1/users/social_login", (request, response) => {
       /* Generate Token */
       var u_token = result._id;
       response.json({
-        status: 200,
+        status: 400,
         token: u_token,
         profile: profileData,
-        message: "Successfully logged in",
+        message: "Success",
       });
     }
   });
