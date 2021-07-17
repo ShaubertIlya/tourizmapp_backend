@@ -5,12 +5,10 @@ import { Observable } from 'rxjs';
 const baseUrl = 'http://185.113.134.76:8080/api/sights';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
-export class SightService { 
-
-  constructor(private http: HttpClient) { }
+export class SightService {
+  constructor(private http: HttpClient) {}
 
   getAll(): Observable<any> {
     return this.http.get(baseUrl);
@@ -21,9 +19,9 @@ export class SightService {
     return this.http.get(baseUrl + '/' + id);
   }
 
-	create(data): Observable<any> {
-		return this.http.post(baseUrl, data);
-	}
+  create(data): Observable<any> {
+    return this.http.post(baseUrl, data);
+  }
 
   update(id, data): Observable<any> {
     return this.http.put(baseUrl + '/' + id, data);
@@ -49,8 +47,10 @@ export class SightService {
   findByCity(query): Observable<any> {
     return this.http.get(baseUrl + '/?city=' + query);
   }
-  UploadImage(formData):Observable<any>{
-   return this.http
-    .post<any>('http://185.113.134.76:8080/uploadfile', formData);
+  UploadImage(formData): Observable<any> {
+    return this.http.post<any>(
+      'http://185.113.134.76:8080/uploadfile',
+      formData
+    );
   }
 }

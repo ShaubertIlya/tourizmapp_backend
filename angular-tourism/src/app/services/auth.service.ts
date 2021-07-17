@@ -5,27 +5,35 @@ import { Observable } from 'rxjs';
 const AUTH_API = 'http://185.113.134.76:8080/api/auth/';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   login(username: string, password: string): Observable<any> {
-    return this.http.post(AUTH_API + 'signin', {
-      username,
-      password
-    }, httpOptions);
+    return this.http.post(
+      AUTH_API + 'signin',
+      {
+        username,
+        password,
+      },
+      httpOptions
+    );
   }
 
   register(username: string, email: string, password: string): Observable<any> {
-    return this.http.post(AUTH_API + 'signup', {
-      username,
-      email,
-      password
-    }, httpOptions);
+    return this.http.post(
+      AUTH_API + 'signup',
+      {
+        username,
+        email,
+        password,
+      },
+      httpOptions
+    );
   }
 }

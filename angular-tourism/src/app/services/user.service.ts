@@ -5,17 +5,16 @@ import { Observable } from 'rxjs';
 const baseUrl = 'http://185.113.134.76:8080/api/users';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class UserService { 
-
-  constructor(private http: HttpClient) { }
+export class UserService {
+  constructor(private http: HttpClient) {}
 
   getAll(): Observable<any> {
     return this.http.get(baseUrl);
   }
   excel(): Observable<any> {
-    return this.http.get(baseUrl+"_xl");
+    return this.http.get(baseUrl + '_xl');
   }
   get(id): Observable<any> {
     return this.http.get(baseUrl + '/' + id);
@@ -41,7 +40,6 @@ export class UserService {
     return this.http.get(baseUrl + '/?email=' + email);
   }
   checkSession(): Observable<any> {
-	  return this.http.get('http://185.113.134.76:8080/check');
+    return this.http.get('http://185.113.134.76:8080/check');
   }
-  
 }
