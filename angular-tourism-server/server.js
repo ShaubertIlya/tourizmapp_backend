@@ -2340,7 +2340,7 @@ app.post("/api/v1/users/register", (request, response) => {
       });
 
       userData.save(function (err, newUser) {
-        response.json({ status: 200, userId: newUser._id, message: "Success" });
+        response.json({ status: 200, token: newUser._id, message: "Success" });
       });
     }
   });
@@ -2384,7 +2384,7 @@ app.post("/api/v1/users/login", (request, response) => {
       /* Generate Token */
       var u_token = result._id;
       response.json({
-        status: 400,
+        status: 200,
         token: u_token,
         profile: profileData,
         message: "Success",
