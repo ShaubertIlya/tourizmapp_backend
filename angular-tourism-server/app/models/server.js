@@ -1563,6 +1563,9 @@ app.put("/api/ar/:id", (request, response) => {
  ,
   "description_en": request.body.description_en,
   "version": request.body.version,
+  "audio_kz": request.body.audio_kz,
+  "audio_ru": request.body.audio_ru,
+  "audio_en": request.body.audio_en,
   "description_ru": request.body.description_ru,
   "description_kz": request.body.description_kz,
   "description_es": request.body.description_es,
@@ -1617,7 +1620,10 @@ app.post("/api/ar", (request, response) => {
     sdescription_kz: request.body.sdescription_kz,
     sdescription_es: request.body.sdescription_es,
     sdescription_zh: request.body.sdescription_zh,
-    create_date:request.body.create_date
+    create_date:request.body.create_date,
+    audio_kz: request.body.audio_kz,
+    audio_ru: request.body.audio_ru,
+    audio_en: request.body.audio_en,
   });
   console.log(ar);
   ar.save(ar)

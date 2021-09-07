@@ -63,7 +63,10 @@ export class ArFormComponent implements OnInit {
 		sdescription_ru: '',
 		sdescription_kz: '',
 		sdescription_es: '',
-		sdescription_zh: ''
+		sdescription_zh: '',
+		audio_kz: '',
+		audio_en: '',
+		audio_ru: '',
 	};
 		
 	languages = [
@@ -231,6 +234,9 @@ export class ArFormComponent implements OnInit {
 			main_header_zh: this.ar.main_header_zh,
 			is_active: this.ar.is_active,
 			version: this.ar.version,
+			audio_kz: this.ar.audio_kz,
+			audio_en: this.ar.audio_en,
+			audio_ru: this.ar.audio_ru,
 			description_en: this.ar.description_en,
 			description_ru: this.ar.description_ru,
 			description_kz: this.ar.description_kz,
@@ -244,7 +250,7 @@ export class ArFormComponent implements OnInit {
 			create_date:d.getTime()+d.getTimezoneOffset() * 60000
 			
 		};
-		
+		console.log(data);
 		if (!this.editMode) {
 		
 			this.arService.create(data).subscribe(

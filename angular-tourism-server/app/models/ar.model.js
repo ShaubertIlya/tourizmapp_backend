@@ -29,7 +29,10 @@ module.exports = mongoose => {
         sdescription_zh: String,
         is_active: Boolean,
         version:Number,
-        create_date:Number
+        create_date:Number,
+        audio_kz: String,
+        audio_ru: String,
+        audio_en: String,
       },
       { timestamps: true }
   );

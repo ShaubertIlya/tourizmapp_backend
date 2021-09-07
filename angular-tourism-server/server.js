@@ -1561,6 +1561,9 @@ app.put("/api/ar/:id", (request, response) => {
   "main_header_zh": request.body.main_header_zh,
   "is_active": request.body.is_active
  ,
+ "audio_kz": request.body.audio_kz,
+ "audio_ru": request.body.audio_ru,
+ "audio_en": request.body.audio_en,
   "description_en": request.body.description_en,
   "version": request.body.version,
   "description_ru": request.body.description_ru,
@@ -1617,7 +1620,10 @@ app.post("/api/ar", (request, response) => {
     sdescription_kz: request.body.sdescription_kz,
     sdescription_es: request.body.sdescription_es,
     sdescription_zh: request.body.sdescription_zh,
-    create_date:request.body.create_date
+    create_date:request.body.create_date,
+    audio_kz: request.body.audio_kz,
+    audio_ru: request.body.audio_ru,
+    audio_en: request.body.audio_en,
   });
   console.log(ar);
   ar.save(ar)
@@ -2346,7 +2352,7 @@ app.post("/api/v1/users/register", (request, response) => {
       });
 
       userData.save(function (err, newUser) {
-        response.json({ status: 200, userId: newUser._id, message: "Success" });
+        response.json({ status: 200, token: newUser._id, message: "Success" });
       });
     }
   });
@@ -2390,7 +2396,7 @@ app.post("/api/v1/users/login", (request, response) => {
       /* Generate Token */
       var u_token = result._id;
       response.json({
-        status: 400,
+        status: 200,
         token: u_token,
         profile: profileData,
         message: "Success",
