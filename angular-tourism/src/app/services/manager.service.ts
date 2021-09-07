@@ -7,11 +7,10 @@ const baseUrl = 'http://185.113.134.76:8080/api/managers';
 const API_URL = 'http://185.113.134.76:8080/api/test/';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ManagerService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getAll(): Observable<any> {
     return this.http.get(baseUrl);
@@ -41,7 +40,7 @@ export class ManagerService {
     return this.http.get(baseUrl + '/?email=' + email);
   }
   checkSession(): Observable<any> {
-	  return this.http.get('http://185.113.134.76:8080/check');
+    return this.http.get('http://185.113.134.76:8080/check');
   }
 
   getPublicContent(): Observable<any> {
@@ -59,8 +58,7 @@ export class ManagerService {
   getAdminBoard(): Observable<any> {
     return this.http.get(API_URL + 'admin', { responseType: 'text' });
   }
-  getRoles():Observable<any>{
+  getRoles(): Observable<any> {
     return this.http.get('http://185.113.134.76:8080/Roles');
-
   }
 }

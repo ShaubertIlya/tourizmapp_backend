@@ -5,12 +5,10 @@ import { Observable } from 'rxjs';
 const baseUrl = 'http://185.113.134.76:8080/api/articles';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
-export class ArticleService { 
-
-  constructor(private http: HttpClient) { }
+export class ArticleService {
+  constructor(private http: HttpClient) {}
 
   getAll(): Observable<any> {
     return this.http.get(baseUrl);
@@ -21,9 +19,9 @@ export class ArticleService {
     return this.http.get(baseUrl + '/' + id);
   }
 
-	create(data): Observable<any> {
-		return this.http.post(baseUrl, data);
-	}
+  create(data): Observable<any> {
+    return this.http.post(baseUrl, data);
+  }
 
   update(id, data): Observable<any> {
     return this.http.put(baseUrl + '/' + id, data);
@@ -47,10 +45,12 @@ export class ArticleService {
     return this.http.get(baseUrl + '/?country=' + query);
   }
   checkSession(): Observable<any> {
-	  return this.http.get('http://185.113.134.76:8080/check');
+    return this.http.get('http://185.113.134.76:8080/check');
   }
-  UploadImage(formData):Observable<any>{
-    return this.http
-     .post<any>('http://185.113.134.76:8080/uploadfile', formData);
-   }
+  UploadImage(formData): Observable<any> {
+    return this.http.post<any>(
+      'http://185.113.134.76:8080/uploadfile',
+      formData
+    );
+  }
 }

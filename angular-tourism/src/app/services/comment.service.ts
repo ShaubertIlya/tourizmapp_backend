@@ -4,10 +4,10 @@ import { Observable } from 'rxjs';
 
 const baseUrl = 'http://185.113.134.76:8080/api/comments';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CommentService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getAll(): Observable<any> {
     return this.http.get(baseUrl);
