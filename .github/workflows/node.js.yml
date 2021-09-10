@@ -30,4 +30,6 @@ jobs:
           cache: "npm"
           cache-dependency-path: "angular-tourism/package-lock.json"
       - run: npm ci
+        working-directory: angular-tourizm
       - run: npm run build
+        working-directory: angular-tourizm
