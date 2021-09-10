@@ -6,15 +6,9 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
-defaults:
-  run:
-    working-directory: ./angular-tourizm
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: angular-tourizm
 
     strategy:
       matrix:
@@ -30,6 +24,6 @@ jobs:
           cache: "npm"
           cache-dependency-path: "angular-tourism/package-lock.json"
       - run: npm ci
-        working-directory: angular-tourizm
+        working-directory: ./angular-tourizm
       - run: npm run build
-        working-directory: angular-tourizm
+        working-directory: ./angular-tourizm
