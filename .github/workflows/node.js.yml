@@ -29,5 +29,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
           cache-dependency-path: "angular-tourism/package-lock.json"
+      - run: cd ./angular-tourizm
       - run: npm i
       - run: npm run build
