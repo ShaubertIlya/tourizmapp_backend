@@ -1512,66 +1512,15 @@ app.delete("/api/ar/:id", (request, response) => {
 app.put("/api/ar/:id", (request, response) => {
   console.log(request.body);
 
-<<<<<<< HEAD
-  Ar.updateOne({_id:request.params.id}, { "$set": {  "file_url": request.body.file_url,
-  "file_url2": request.body.file_url2,
-  "sight_id": request.body.sight_id,
-  "main_header_en": request.body.main_header_en,
-  "main_header_ru": request.body.main_header_ru,
-  "main_header_kz": request.body.main_header_kz,
-  "main_header_es": request.body.main_header_es,
-  "main_header_zh": request.body.main_header_zh,
-  "is_active": request.body.is_active
- ,
- "audio_kz": request.body.audio_kz,
- "audio_ru": request.body.audio_ru,
- "audio_en": request.body.audio_en,
-  "description_en": request.body.description_en,
-  "version": request.body.version,
-  "description_ru": request.body.description_ru,
-  "description_kz": request.body.description_kz,
-  "description_es": request.body.description_es,
-  "description_zh": request.body.description_zh,
-  "sdescription_en": request.body.sdescription_en,
-  "sdescription_ru": request.body.sdescription_ru,
-  "sdescription_kz": request.body.sdescription_kz,
-  "sdescription_es": request.body.sdescription_es,
-  "sdescription_zh": request.body.sdescription_zh
-}}, {
-    useFindAndModify: false,
-  })
-=======
   Ar.updateOne(
     { _id: request.params.id },
     {
-      $set: {
-        file_url: request.body.file_url,
-        file_url2: request.body.file_url2,
-        sight_id: request.body.sight_id,
-        main_header_en: request.body.main_header_en,
-        main_header_ru: request.body.main_header_ru,
-        main_header_kz: request.body.main_header_kz,
-        main_header_es: request.body.main_header_es,
-        main_header_zh: request.body.main_header_zh,
-        is_active: request.body.is_active,
-        description_en: request.body.description_en,
-        version: request.body.version,
-        description_ru: request.body.description_ru,
-        description_kz: request.body.description_kz,
-        description_es: request.body.description_es,
-        description_zh: request.body.description_zh,
-        sdescription_en: request.body.sdescription_en,
-        sdescription_ru: request.body.sdescription_ru,
-        sdescription_kz: request.body.sdescription_kz,
-        sdescription_es: request.body.sdescription_es,
-        sdescription_zh: request.body.sdescription_zh,
-      },
+      $set: request.body,
     },
     {
       useFindAndModify: false,
     }
   )
->>>>>>> 70aff0739306858a8d942d2a29df851432b62449
     .then((data) => {
       Ar.find({})
         .then((data) => {
@@ -1612,14 +1561,10 @@ app.post("/api/ar", (request, response) => {
     sdescription_kz: request.body.sdescription_kz,
     sdescription_es: request.body.sdescription_es,
     sdescription_zh: request.body.sdescription_zh,
-<<<<<<< HEAD
-    create_date:request.body.create_date,
+    create_date: request.body.create_date,
     audio_kz: request.body.audio_kz,
     audio_ru: request.body.audio_ru,
     audio_en: request.body.audio_en,
-=======
-    create_date: request.body.create_date,
->>>>>>> 70aff0739306858a8d942d2a29df851432b62449
   });
   console.log(ar);
   ar.save(ar)
