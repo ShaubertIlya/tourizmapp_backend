@@ -8,7 +8,7 @@ on:
     branches: [main]
 defaults:
   run:
-    working-directory: angular-tourizm
+    working-directory: ./angular-tourizm
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -29,8 +29,5 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
           cache-dependency-path: "angular-tourism/package-lock.json"
-      - name: "Cd directory"
-        working-directory: angular-tourizm
-        run: cd ./angular-tourizm
-        run: npm i
-        run: npm run build
+      - run: npm ci
+      - run: npm run build
