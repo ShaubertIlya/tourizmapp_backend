@@ -36,48 +36,6 @@ export class ArFormComponent implements OnInit {
   progress = 0;
   message = '';
 
-<<<<<<< HEAD
-	editId: string;
-	editMode: boolean;
-	
-	ar = {
-		
-		file_url: '',
-		file_url2: '',
-		sight_id: '',
-		main_header_en: '',
-		main_header_ru: '',
-		main_header_kz: '',
-		main_header_es: '',
-		main_header_zh: '',
-		is_active: true,
-		version:0,
-		description_en: '',
-		description_ru: '',
-		description_kz: '',
-		description_es: '',
-		description_zh: '',	
-		sdescription_en: '',
-		sdescription_ru: '',
-		sdescription_kz: '',
-		sdescription_es: '',
-		sdescription_zh: '',
-		audio_kz: '',
-		audio_en: '',
-		audio_ru: '',
-	};
-		
-	languages = [
-		
-		{"code": "en", "name": "English"},
-		{"code": "ru", "name": "Russian"},
-		{"code": "kz", "name": "Kazakh"},
-		{"code": "es", "name": "Spanish"},
-		{"code": "zh", "name": "Chinese"}
-=======
-  fileInfos?: Observable<any>;
->>>>>>> 70aff0739306858a8d942d2a29df851432b62449
-
   editId: string;
   editMode: boolean;
 
@@ -102,6 +60,9 @@ export class ArFormComponent implements OnInit {
     sdescription_kz: '',
     sdescription_es: '',
     sdescription_zh: '',
+    audio_kz: '',
+    audio_en: '',
+    audio_ru: '',
   };
 
   languages = [
@@ -166,94 +127,72 @@ export class ArFormComponent implements OnInit {
     );
   }
 
-<<<<<<< HEAD
-	saveAr(): void {
-		var d= new Date();
-		const data = {
-			
-			file_url: this.ar.file_url,
-			file_url2: this.ar.file_url2,
-			sight_id: this.ar.sight_id,
-			main_header_en: this.ar.main_header_en,
-			main_header_ru: this.ar.main_header_ru,
-			main_header_kz: this.ar.main_header_kz,
-			main_header_es: this.ar.main_header_es,
-			main_header_zh: this.ar.main_header_zh,
-			is_active: this.ar.is_active,
-			version: this.ar.version,
-			audio_kz: this.ar.audio_kz,
-			audio_en: this.ar.audio_en,
-			audio_ru: this.ar.audio_ru,
-			description_en: this.ar.description_en,
-			description_ru: this.ar.description_ru,
-			description_kz: this.ar.description_kz,
-			description_es: this.ar.description_es,
-			description_zh: this.ar.description_zh,
-			sdescription_en: this.ar.sdescription_en,
-			sdescription_ru: this.ar.sdescription_ru,
-			sdescription_kz: this.ar.sdescription_kz,
-			sdescription_es: this.ar.sdescription_es,
-			sdescription_zh: this.ar.sdescription_zh,
-			create_date:d.getTime()+d.getTimezoneOffset() * 60000
-			
-		};
-		console.log(data);
-		if (!this.editMode) {
-		
-			this.arService.create(data).subscribe(
-				response => {
-					this.router.navigate(['/ar']);
-				},
-				error => {
-					console.log(error);
-				});
-				
-		}
-		else {
-=======
-  onFileChange(event) {
-    this.files = event.target.files;
-    console.log(this.files);
-  }
-  onFileSelect(event) {
-    const file = event.target.files[0];
-    this.fileInputLabel = file.name;
-    console.log(this.fileUploadForm.get('uploadedImage'));
-    this.fileUploadForm.get('uploadedImage').setValue(file);
-  }
-  onFormSubmit() {
-    if (!this.fileUploadForm.get('uploadedImage').value) {
-      alert('Please fill valid details!');
-      return false;
-    }
->>>>>>> 70aff0739306858a8d942d2a29df851432b62449
-
-    const formData = new FormData();
-    formData.append(
-      'uploadedFile',
-      this.fileUploadForm.get('uploadedImage').value
-    );
-    formData.append('agentId', '007');
-
-    this.arService.UploadImage(formData).subscribe(
-      (response) => {
-        console.log(response);
-        if (response.statusCode === 200) {
-          // Reset the file input
-          this.uploadFileInput.nativeElement.value = '';
-          this.fileInputLabel = undefined;
-          console.log(response);
-          this.ar.file_url = response.uploadedFile.path;
-          this.file =
-            'http://185.113.134.76:8080/my_files/' +
-            response.uploadedFile.filename;
+  saveAr(): void {
+    var d = new Date();
+    const data = {
+      file_url: this.ar.file_url,
+      file_url2: this.ar.file_url2,
+      sight_id: this.ar.sight_id,
+      main_header_en: this.ar.main_header_en,
+      main_header_ru: this.ar.main_header_ru,
+      main_header_kz: this.ar.main_header_kz,
+      main_header_es: this.ar.main_header_es,
+      main_header_zh: this.ar.main_header_zh,
+      is_active: this.ar.is_active,
+      version: this.ar.version,
+      audio_kz: this.ar.audio_kz,
+      audio_en: this.ar.audio_en,
+      audio_ru: this.ar.audio_ru,
+      description_en: this.ar.description_en,
+      description_ru: this.ar.description_ru,
+      description_kz: this.ar.description_kz,
+      description_es: this.ar.description_es,
+      description_zh: this.ar.description_zh,
+      sdescription_en: this.ar.sdescription_en,
+      sdescription_ru: this.ar.sdescription_ru,
+      sdescription_kz: this.ar.sdescription_kz,
+      sdescription_es: this.ar.sdescription_es,
+      sdescription_zh: this.ar.sdescription_zh,
+      create_date: d.getTime() + d.getTimezoneOffset() * 60000,
+    };
+    console.log(data);
+    if (!this.editMode) {
+      this.arService.create(data).subscribe(
+        (response) => {
+          this.router.navigate(['/ar']);
+        },
+        (error) => {
+          console.log(error);
         }
-      },
-      (er) => {
-        console.log(er);
-        alert(er.error.error);
-      }
-    );
+      );
+    } else {
+      const formData = new FormData();
+      formData.append(
+        'uploadedFile',
+        this.fileUploadForm.get('uploadedImage').value
+      );
+      formData.append('agentId', '007');
+
+      this.arService.UploadImage(formData).subscribe(
+        (response) => {
+          console.log(response);
+          if (response.statusCode === 200) {
+            // Reset the file input
+            this.uploadFileInput.nativeElement.value = '';
+            this.fileInputLabel = undefined;
+            console.log(response);
+            this.ar.file_url = response.uploadedFile.path;
+            this.file =
+              'http://185.113.134.76:8080/my_files/' +
+              response.uploadedFile.filename;
+          }
+        },
+        (er) => {
+          console.log(er);
+          alert(er.error.error);
+        }
+      );
+    }
   }
 
   onFileChange2(event) {
@@ -297,52 +236,5 @@ export class ArFormComponent implements OnInit {
         alert(er.error.error);
       }
     );
-  }
-
-  saveAr(): void {
-    var d = new Date();
-    const data = {
-      file_url: this.ar.file_url,
-      file_url2: this.ar.file_url2,
-      sight_id: this.ar.sight_id,
-      main_header_en: this.ar.main_header_en,
-      main_header_ru: this.ar.main_header_ru,
-      main_header_kz: this.ar.main_header_kz,
-      main_header_es: this.ar.main_header_es,
-      main_header_zh: this.ar.main_header_zh,
-      is_active: this.ar.is_active,
-      version: this.ar.version,
-      description_en: this.ar.description_en,
-      description_ru: this.ar.description_ru,
-      description_kz: this.ar.description_kz,
-      description_es: this.ar.description_es,
-      description_zh: this.ar.description_zh,
-      sdescription_en: this.ar.sdescription_en,
-      sdescription_ru: this.ar.sdescription_ru,
-      sdescription_kz: this.ar.sdescription_kz,
-      sdescription_es: this.ar.sdescription_es,
-      sdescription_zh: this.ar.sdescription_zh,
-      create_date: d.getTime() + d.getTimezoneOffset() * 60000,
-    };
-
-    if (!this.editMode) {
-      this.arService.create(data).subscribe(
-        (response) => {
-          this.router.navigate(['/ar']);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-    } else {
-      this.arService.update(this.editId, data).subscribe(
-        (response) => {
-          this.router.navigate(['/ar']);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-    }
   }
 }
