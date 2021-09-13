@@ -155,7 +155,7 @@ export class ArFormComponent implements OnInit {
       sdescription_zh: this.ar.sdescription_zh,
       create_date: d.getTime() + d.getTimezoneOffset() * 60000,
     };
-    console.log(data);
+    console.log(this.editMode);
     if (!this.editMode) {
       this.arService.create(data).subscribe(
         (response) => {
@@ -166,32 +166,39 @@ export class ArFormComponent implements OnInit {
         }
       );
     } else {
-      const formData = new FormData();
-      formData.append(
-        'uploadedFile',
-        this.fileUploadForm.get('uploadedImage').value
-      );
-      formData.append('agentId', '007');
-
-      this.arService.UploadImage(formData).subscribe(
+      this.arService.update(this.editId, data).subscribe(
         (response) => {
-          console.log(response);
-          if (response.statusCode === 200) {
-            // Reset the file input
-            this.uploadFileInput.nativeElement.value = '';
-            this.fileInputLabel = undefined;
-            console.log(response);
-            this.ar.file_url = response.uploadedFile.path;
-            this.file =
-              'http://185.113.134.76:8080/my_files/' +
-              response.uploadedFile.filename;
-          }
+          this.router.navigate(['/ar']);
         },
-        (er) => {
-          console.log(er);
-          alert(er.error.error);
+        (error) => {
+          console.log(error);
         }
       );
+      // const formData = new FormData();
+      // formData.append(
+      //   'uploadedFile',
+      //   this.fileUploadForm.get('uploadedImage').value
+      // );
+      // formData.append('agentId', '007');
+      // this.arService.UploadImage(formData).subscribe(
+      //   (response) => {
+      //     console.log(response);
+      //     if (response.statusCode === 200) {
+      //       // Reset the file input
+      //       this.uploadFileInput.nativeElement.value = '';
+      //       this.fileInputLabel = undefined;
+      //       console.log(response);
+      //       this.ar.file_url = response.uploadedFile.path;
+      //       this.file =
+      //         'http://185.113.134.76:8080/my_files/' +
+      //         response.uploadedFile.filename;
+      //     }
+      //   },
+      //   (er) => {
+      //     console.log(er);
+      //     alert(er.error.error);
+      //   }
+      // );
     }
   }
 
