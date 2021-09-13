@@ -1760,32 +1760,32 @@ app.post("/api/articles", (request, response) => {
       });
     });
 });
-app.get("/my_uploaded_files/:name", (req, res, next) => {
-  var query = req.params.name;
-  console.log(query);
-  // stream the image back by loading the file
-  res.setHeader("Content-Type", "image/jpeg");
-  fs.createReadStream(path.join("my_uploaded_files", query)).pipe(res);
-});
-app.get("/my_files/:name", (req, res, next) => {
-  var query = req.params.name;
-  // stream the image back by loading the file
-  //res.setHeader('Content-Type', 'image/jpeg');
-  // res.sendFile(__dirname + '/my_files/'+query);
-  res.setHeader("Content-disposition", 'inline; filename="' + query + '"');
-  res.setHeader("Content-type", "text/plain");
+// app.get("/my_uploaded_files/:name", (req, res, next) => {
+//   var query = req.params.name;
+//   console.log(query);
+//   // stream the image back by loading the file
+//   res.setHeader("Content-Type", "image/jpeg");
+//   fs.createReadStream(path.join("my_uploaded_files", query)).pipe(res);
+// });
+// app.get("/my_files/:name", (req, res, next) => {
+//   var query = req.params.name;
+//   // stream the image back by loading the file
+//   //res.setHeader('Content-Type', 'image/jpeg');
+//   // res.sendFile(__dirname + '/my_files/'+query);
+//   res.setHeader("Content-disposition", 'inline; filename="' + query + '"');
+//   res.setHeader("Content-type", "text/plain");
 
-  fs.createReadStream(path.join("my_files", query)).pipe(res);
-  // fs.readFile(__dirname +'/my_files/'+ query, function (err,data) {
-  //   if (err) {
-  //     res.writeHead(404);
-  //     res.end(JSON.stringify(err));
-  //     return;
-  //   }
-  //   res.writeHead(200);
-  //   res.end(data);
-  // });
-});
+//   fs.createReadStream(path.join("my_files", query)).pipe(res);
+//   // fs.readFile(__dirname +'/my_files/'+ query, function (err,data) {
+//   //   if (err) {
+//   //     res.writeHead(404);
+//   //     res.end(JSON.stringify(err));
+//   //     return;
+//   //   }
+//   //   res.writeHead(200);
+//   //   res.end(data);
+//   // });
+// });
 /* SIGHTS */
 app.get("/api/sights", (request, response) => {
   var query = request.query.query;
